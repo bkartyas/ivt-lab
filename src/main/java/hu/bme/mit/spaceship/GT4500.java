@@ -1,3 +1,4 @@
+
 package hu.bme.mit.spaceship;
 
 /**
@@ -37,10 +38,9 @@ public class GT4500 implements SpaceShip {
   @Override
   public boolean fireTorpedos(FiringMode firingMode) {
 
-    boolean firingSuccess = false;
+    boolean firingSuccess = false;o
 
-    switch (firingMode) {
-      case SINGLE:
+    if (firingMode == SINGLE) {
         if (wasPrimaryFiredLast) {
           // try to fire the secondary first
           if (! secondaryTorpedoStore.isEmpty()) {
@@ -75,17 +75,11 @@ public class GT4500 implements SpaceShip {
             // if both of the stores are empty, nothing can be done, return failure
           }
         }
-        break;
-
-      case ALL:
-        // try to fire both of the torpedos
-        //TODO implement feature
-
+      }
 
 	if (!primaryTorpedoStore.isEmpty() && !secondaryTorpedoStore.isEmpty()) {
             firingSuccess = primaryTorpedoStore.fire(1) && secondaryTorpedoStore.fire(1);
         }
-
     }
 
     return firingSuccess;
